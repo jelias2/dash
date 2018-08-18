@@ -19,7 +19,7 @@ df.set_index("country", inplace=True)
 available_countries = ['Vietnam']
 
 app.layout = html.Div([
-    html.H1('AVG Temperatures'),
+    html.H1('Average Yearly Temperatures'),
     dcc.Dropdown(
         id='my-dropdown',
         options=[
@@ -40,7 +40,7 @@ def update_graph(selected_dropdown_value):
     return {
         'data': [{
             'x': years,
-            'y': df[df.index == 'Vietnam'].iloc[0,:]
+            'y': df[df.index == 'Vietnam'].drop(["index"], axis = 1).iloc[0,:]
         }]
     }
 

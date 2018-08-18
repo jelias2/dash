@@ -11,14 +11,15 @@ years=["1980","1981","1982","1983","1984","1985","1986","1987","1988","1989",'19
 
 df = pd.read_csv('populationbycountry19802010millions.csv')
 df.reset_index(inplace=True)
-df.set_index("country", inplace=True)
+df.set_index("countries", inplace=True)
+df.drop(["index"])
 available_countries = df.index.unique()
 #print available_countries
 for country in available_countries:
     if country == "Vietnam":
-        odf = df[df.index == country]
+        odf = df[df.index == "Vietnam"]
         print( odf.iloc[0,:])
-    
+
     #trace = {'x': odf['YEAR'], 'y': odf['QUANTITY'], name=fund}
 #print(df.index) ##prints out all the countries
 # r = 0
