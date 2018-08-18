@@ -24,7 +24,7 @@ app.layout = html.Div([
         id='my-dropdown',
         options=[
             {'label': 'Vietnam', 'value': 'Vietnam'},
-            {'label': 'Tesla', 'value': 'TSLA'},
+            {'label': 'Barbuda', 'value': 'Barbuda'},
             {'label': 'Apple', 'value': 'AAPL'}
         ],
         value='Vietnam'
