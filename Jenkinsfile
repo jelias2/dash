@@ -27,7 +27,6 @@ node('master') {
                     --desired-count 1 \
                     --launch-type "FARGATE" \
                     --network-configuration awsvpcConfiguration="{subnets=[subnet-d764cb9e],securityGroups=[sg-b3efdfcb],assignPublicIp="ENABLED"}" """
-
           }
       }
 }
