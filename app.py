@@ -23,15 +23,15 @@ app.layout = html.Div([
             'data': [
                 go.Scatter(
                     x=years,
-                    y=df[df.index == country][],
-                    text=df[df.index == country][x],
+                    y=df[df.index == country],
+                    text=str(df[df.index == country]),
                     mode='markers',
                     opacity=0.7,
                     marker={
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'white'}
                     },
-                    name=i
+                    name="Vietnam"
                 ) for country in available_countries
             ],
             'layout': go.Layout(

@@ -16,33 +16,49 @@ years=["1980","1981","1982","1983","1984","1985","1986","1987","1988","1989",'19
 df = pd.read_csv('populationbycountry19802010millions.csv')
 df.reset_index(inplace=True)
 df.set_index("country", inplace=True)
-#available_countries = df.index.unique()
-available_countries = ['Vietnam']
+available_countries = df.index.unique()
+#available_countries = ['Vietnam','Panama',]
 
 app.layout = html.Div([
     html.H1('Average Yearly Temperatures'),
     dcc.Dropdown(
         id='my-dropdown',
-        options=[
-            {'label': 'Vietnam', 'value': 'Vietnam'},
-            {'label': 'Barbuda', 'value': 'Barbuda'},
-            {'label': 'Apple', 'value': 'AAPL'}
+        # options=[
+        #     {'label': 'Vietnam', 'value': 'Vietnam'},
+        #     {'label': 'Panama', 'value': 'Panama'},
+        #     {'label': 'Apple', 'value': 'AAPL'}
+        options=[{'label':name, 'value':name} for name in available_countries
         ],
-        value='Vietnam'
+        value='Barbuda'
     ),
     dcc.Graph(id='my-graph')
 ])
 
 @app.callback(Output('my-graph', 'figure'), [Input('my-dropdown', 'value')])
 def update_graph(selected_dropdown_value):
-    # df = web.DataReader(
-    #     selected_dropdown_value, data_source='google',
-    #     start=dt(2017, 1, 1), end=dt.now())
-    return {
+
+     df = pd.read_csv('populationbycountry19802010millions.csv')
+     df.reset_index(inplace=True)
+     df.set_index("country", inplace=True)
+     odf = df[df.index == selected_dropdown_value]
+     print( odf.drop(["index"], axis = 1).iloc[0,:])
+
+     return {
+
         'data': [{
             'x': years,
-            'y': df[df.index == 'Vietnam'].drop(["index"], axis = 1).iloc[0,:]
-        }]
+            'y': df[df.index == selected_dropdown_value].drop(["index"], axis = 1).iloc[0,:]
+            #'y': odf
+        }],
+        'layout':{
+            'title': selected_dropdown_value,
+            'xaxis':{
+                'title':'Years'
+            },
+            'yaxis':{
+                 'title':'Population in Millions'
+            }
+        }
     }
 
 if __name__ == '__main__':
