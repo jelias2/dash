@@ -4,6 +4,7 @@ import numpy as np
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import logging
 #from pandas_datareader import data as web
 from datetime import datetime as dt
 
@@ -45,4 +46,5 @@ def update_graph(selected_dropdown_value):
     }
 
 if __name__ == '__main__':
-    app.run_server()
+    logging.debug("Starting run_server")
+    app.run_server(host='0.0.0.0',debug=True)
