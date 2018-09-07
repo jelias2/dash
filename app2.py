@@ -19,7 +19,7 @@ available_countries = df.index.unique()
 
 #Set up the Div for the graph and dropdown menu
 app.layout = html.Div([
-    html.H1('Average Yearly Temperatures'),
+    html.H1('Population by Country from 1980-2010'),
     dcc.Dropdown(
         id='my-dropdown',
         options=[{'label':name, 'value':name} for name in available_countries],
