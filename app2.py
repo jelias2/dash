@@ -1,4 +1,5 @@
 import dash
+import logging
 import pandas as pd
 import numpy as np
 from dash.dependencies import Input, Output
